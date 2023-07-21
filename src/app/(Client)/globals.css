@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  /* color pallete */
+  --primarygreen: 16, 106, 57;
+  --secondarygreen: 92, 147, 72;
+  --tertiarygreen: 143, 198, 64;
+  --customorange: 253, 187, 37;
+  --customyellow: 244, 223, 108;
+}
+
+/*disable support for dark mode*/
+/*@media (prefers-color-scheme: dark) {*/
+/*  :root {*/
+/*    --foreground-rgb: 123, 123, 123;*/
+/*    --background-start-rgb: 0, 0, 0;*/
+/*    --background-end-rgb: 0, 0, 0;*/
+/*  }*/
+/*}*/
+
+/* custom button implementation */
+.dark {
+  --foreground-rgb: 123, 123, 123;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 20, 20, 20;
+}
+
+body {
+  color: rgb(var(--primarygreen));
+  background: rgb(var(--background-end-rgb));
+  transition: background-color 0.5s ease;
+}
+
+.homeplayer {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 67px);
+  user-select: none;
+}
+
+.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.homeplayer video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+}
+.modal-box {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .modal-box {
+    width: 100%;
+    max-width: 91.666667% !important;
+  }
+}

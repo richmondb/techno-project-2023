@@ -1,0 +1,62 @@
+import prisma from './client'
+
+// const faker = require('faker'); // Import faker library for generating random data
+
+const {faker} = require('@faker-js/faker');
+
+async function main() {
+    for (let i = 0; i < 10; i++) {
+        const firstName = faker.person.firstName();
+        const middleName = faker.person.middleName();
+        const lastName = faker.person.lastName();
+        const gender = faker.random.arrayElement(['M', 'F']);
+        const address = faker.address.streetAddress();
+        const phoneNum = faker.phone.phoneNumber();
+
+        const farmName = `${firstName}'s Farm`;
+        const farmDesc = faker.lorem.sentence();
+        const farmAddress = faker.address.city() + ', ' + faker.address.country();
+        const farmSize = `${faker.random.number({min: 1, max: 100})} hectares`;
+        const targetAmt = faker.random.number({min: 1000, max: 50000});
+        const farmCrop = faker.random.arrayElement(['rice', 'wheat', 'corn', 'potato']);
+        const cropLifetime = faker.random.number({min: 60, max: 180});
+        const farmPic = ''; // You can add image URLs here if you have them
+        const farmerPic = ''; // You can add image URLs here if you have them
+
+        const farmower = await prisma.farmOwner.create({
+            data: {
+                first_name: firstName,
+                middle_name: middleName,
+                last_name: lastName,
+                gender: gender,
+                address: address,
+                phone_num: phoneNum,
+                farm: {
+                    create: {
+                        farm_name: farmName,
+                        farm_desc: farmDesc,
+                        farm_address: farmAddress,
+                        farm_size: farmSize,
+                        target_amt: targetAmt,
+                        farm_crop: farmCrop,
+                        crop_lifetime: cropLifetime,
+                        farm_pic: farmPic,
+                        farmer_pic: farmerPic,
+                    },
+                },
+            },
+        });
+
+        console.log('Farm owner created:', farmower);
+    }
+}
+
+main()
+    .then(async () => {
+        await prisma.$disconnect()
+    })
+    .catch(async (e) => {
+        console.error(e)
+        await prisma.$disconnect()
+        process.exit(1)
+    });
