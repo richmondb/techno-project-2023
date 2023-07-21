@@ -22,6 +22,8 @@ async function Page({params}: { params: { farmerid: string } }) {
 
     const data = await Getspecific(id);
 
+    console.log(data)
+
     const active_contract = await prisma.contract.findUnique({
         where: {
             farmId: Number(id),

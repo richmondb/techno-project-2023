@@ -48,6 +48,21 @@ async function main() {
     //     console.log(maker);
     //     i++;
     // }
+    const u1 = await prisma.user.create({
+        data: {
+            first_name: 'Default',
+            middle_name: 'Default',
+            last_name: 'Default',
+            name: 'Default',
+            gender: 'M',
+            email: 'default@gmail.com',
+            birthday: new Date(),
+            phone_num: '',
+            password: '$2b$12$ej5qECl2XeQP3EoU2ItFWOj0n3qcmlFdLT9WL6dj3OC34wI3IiYfC',
+            email_verified: new Date()
+
+        }
+    })
 
 
     const f1 = await prisma.farmOwner.create({
@@ -69,6 +84,13 @@ async function main() {
                     crop_lifetime: 60,
                     farm_pic: '',
                     farmer_pic: '',
+                    globalfarmstatus: {
+                        create: {
+                            global_status: 0,
+                            global_amt_raise: 0,
+                            global_interest: 0,
+                        }
+                    }
                 }
             }
         }
@@ -92,6 +114,13 @@ async function main() {
                     crop_lifetime: 60,
                     farm_pic: '',
                     farmer_pic: '',
+                    globalfarmstatus: {
+                        create: {
+                            global_status: 0,
+                            global_amt_raise: 0,
+                            global_interest: 0,
+                        }
+                    }
                 }
             }
         }
@@ -115,6 +144,13 @@ async function main() {
                     crop_lifetime: 60,
                     farm_pic: '',
                     farmer_pic: '',
+                    globalfarmstatus: {
+                        create: {
+                            global_status: 0,
+                            global_amt_raise: 0,
+                            global_interest: 0,
+                        }
+                    }
                 }
             }
         }
@@ -138,6 +174,13 @@ async function main() {
                     crop_lifetime: 60,
                     farm_pic: '',
                     farmer_pic: '',
+                    globalfarmstatus: {
+                        create: {
+                            global_status: 0,
+                            global_amt_raise: 0,
+                            global_interest: 0,
+                        }
+                    }
                 }
             }
         }
@@ -161,6 +204,13 @@ async function main() {
                     crop_lifetime: 60,
                     farm_pic: '',
                     farmer_pic: '',
+                    globalfarmstatus: {
+                        create: {
+                            global_status: 0,
+                            global_amt_raise: 0,
+                            global_interest: 0,
+                        }
+                    }
                 }
             }
         }
@@ -184,6 +234,13 @@ async function main() {
                     crop_lifetime: 60,
                     farm_pic: '',
                     farmer_pic: '',
+                    globalfarmstatus: {
+                        create: {
+                            global_status: 0,
+                            global_amt_raise: 0,
+                            global_interest: 0,
+                        }
+                    }
                 }
             }
         }
@@ -208,6 +265,13 @@ async function main() {
                     crop_lifetime: 60,
                     farm_pic: '',
                     farmer_pic: '',
+                    globalfarmstatus: {
+                        create: {
+                            global_status: 0,
+                            global_amt_raise: 0,
+                            global_interest: 0,
+                        }
+                    }
                 }
             }
         }
