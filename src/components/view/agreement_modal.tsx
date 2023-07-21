@@ -24,7 +24,8 @@ const AgreementModal = (props: props) => {
                         safeguarding both our valued investors and the farmers we support. By leveraging our core
                         expertise in risk management, we have designed robust structures that effectively reduce risks
                         and enhance profitability.</p><br/>
-                    <p className={'text-gray-600'}>By clicking "Agree," you acknowledge and accept that, despite our
+                    <p className={'text-gray-600'}>By clicking &ldquo;Agree,&ldquo; you acknowledge and accept that,
+                        despite our
                         diligent efforts, certain
                         risks may still be present, and there might be a possibility of incurring losses. We are
                         transparent about the potential risks, including non-repayment or payment default. However, it

@@ -207,7 +207,7 @@ async function Page({params}: { params: { farmerid: string } }) {
         return (
             <div className={''}>
                 <div className={'text-2xl'}>
-                    <p>{((data.farmowner?.gender === 'M') ? 'Mr. ' : 'Ms. ') + data.farmowner?.first_name}'s
+                    <p>{((data.farmowner?.gender === 'M') ? 'Mr. ' : 'Ms. ') + data.farmowner?.first_name}&apos;s
                         Farm
                         plants {data.farm_crop} in {data.farm_size.toUpperCase()} Land</p>
 
@@ -421,7 +421,8 @@ async function Page({params}: { params: { farmerid: string } }) {
                                 smallholder farmers by providing much-needed capital to finance their farms and break
                                 free from the burden of overlapping debt.
                                 <br/><br/>
-                                Investing in InvestoFarm's Cropital platform empowers farmers without requiring them to
+                                Investing in InvestoFarm&apos;s Cropital platform empowers farmers without requiring
+                                them to
                                 provide collateral. Your support becomes a lifeline for these farmers, enabling them to
                                 invest in the future of their families and foster the growth of their farms.
                                 <br/><br/>
@@ -430,7 +431,8 @@ async function Page({params}: { params: { farmerid: string } }) {
                                 pesos invested, you can expect a return of 5,175 pesos after a successful harvest
                                 season.
                                 <br/><br/>
-                                By joining InvestoFarm's mission, you are not only making a financially sound decision
+                                By joining InvestoFarm&apos;s mission, you are not only making a financially sound
+                                decision
                                 but also becoming an agent of positive change, helping farmers build better futures for
                                 themselves and their communities. Together, we can transform the agricultural landscape
                                 and support the backbone of our economy – the hardworking farmers.</p>

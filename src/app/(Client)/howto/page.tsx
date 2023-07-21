@@ -74,7 +74,8 @@ const Howto = () => {
                         <p className={'text-lg'}>
                             Experience Lucrative Returns</p>
                         <p className={'text-lg'}>Following the successful harvest and sale of the produce, the invested
-                            capital, along with the shared profits, will be promptly returned to the investor's virtual
+                            capital, along with the shared profits, will be promptly returned to the investor&apos;s
+                            virtual
                             wallet. At InvestoFarm, we prioritize transparency and efficiency, ensuring a seamless
                             process for investors to gain their well-deserved returns on investment. Our commitment to
                             maximizing profits for our valued investors makes us the ideal choice for those seeking
@@ -90,7 +91,7 @@ const Howto = () => {
                 </div>
             </div>
             <div>
-                
+
             </div>
         </div>
 

@@ -6,6 +6,9 @@ import Link from "next/link";
 const Page = async () => {
     const data = await Getfarms();
 
+
+    let count = 0;
+
     // await new Promise(r => setTimeout(r, 3000));
     console.log(typeof data)
 
@@ -13,12 +16,14 @@ const Page = async () => {
         <div className={'px-12'}>
             <div className='grid w-full gap-12 border-green-800 p-12 md:grid-cols-3'>
                 {data.map(farm => (
+
                     <div
                         className={'flex border border-green-800 border-solid flex-col md:flex-col h-full md:h-[500px] md:w-full'}
                         key={farm.id}>
+                        <p className={'hidden'}>{count++}</p>
                         <div className={'relative w-full h-[300px] md:h-1/2 '}>
                             {/*farm picure of farmer picture*/}
-                            <Image src={'/carousel/4.jpg'} fill quality={100} alt="Shoes" className={''}
+                            <Image src={`/farmers/img-${count}.jpg`} fill quality={100} alt="Shoes" className={''}
                                    priority={true}/>
                             {/*farm favorites*/}
                             <div className={'absolute top-2 right-2 flex flex-col gap-2'}>

@@ -33,13 +33,6 @@ const Page = () => {
         formData.gender = event.target.value;
     };
 
-    if (formData.password == formData.confirm_password) {
-        let a = document.getElementById('errors');
-        a?.classList.add('hidden');
-    } else {
-        let a = document.getElementById('errors');
-        a?.classList.remove('hidden');
-    }
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

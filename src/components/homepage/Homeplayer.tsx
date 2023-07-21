@@ -53,7 +53,7 @@ function Homeplayer() {
                 loop={true}
                 disablePictureInPicture={true}
                 disableRemotePlayback={true}
-                src={'/videos/investofarmsequence.mp4'}>
+                src={'https://res.cloudinary.com/dkpsube2s/video/upload/v1686904756/investofarmsequence_dffxv5.mp4'}>
             </video>
             <div className="content">
                 <h1 className={'text-5xl md:text-8xl'}>InvestoFarm</h1>
