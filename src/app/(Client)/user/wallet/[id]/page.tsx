@@ -82,7 +82,7 @@ const Page = ({params}: { params: { id: string } }) => {
 
     return (
         <div>
-            {params.id}
+            {/*{params.id}*/}
             <form onSubmit={onSubmit}>
                 <section>
                     <div className="mx-auto grid max-w-screen-2xl grid-cols-1 md:grid-cols-2">

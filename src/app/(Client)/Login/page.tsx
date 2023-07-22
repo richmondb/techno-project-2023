@@ -43,9 +43,9 @@ const LoginPage = () => {
                 <div className="z-10 flex flex-col self-center p-10 sm:max-w-5xl xl:max-w-2xl">
                     <div className="hidden flex-col self-start text-white lg:flex">
                         {/*<img src className="mb-3"/>*/}
-                        <h1 className="mb-3 text-5xl font-bold">Hi ? Welcome Back Aji </h1>
-                        <p className="pr-3">Lorem ipsum is placeholder text commonly used in the graphic, print,
-                            and publishing industries for previewing layouts and visual mockups</p>
+                        <h1 className="mb-3 text-5xl font-bold">Hi, Login to Continue</h1>
+                        <p className="pr-3">Sign in to InvestoFarm and embark on a rewarding journey to support
+                            sustainable agriculture, empower farmers, and grow your investment portfolio.</p>
                     </div>
                 </div>
                 <div className="z-10 flex justify-center self-center">

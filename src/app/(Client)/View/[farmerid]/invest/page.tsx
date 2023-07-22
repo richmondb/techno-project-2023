@@ -174,7 +174,7 @@ const Page = () => {
 
     return (
         <div>
-            <p>im inside the dynamicn route yall</p>
+            {/*<p>im inside the dynamicn route yall</p>*/}
             <form onSubmit={onSubmit} id={'investForm'} autoComplete={'on'}>
                 <div className={'h-auto py-6 flex flex-col lg:flex-row justify-center items-center gap-3'}>
                     <div className={'w-full md:w-[28rem] border border-base-300 rounded-sm'}>

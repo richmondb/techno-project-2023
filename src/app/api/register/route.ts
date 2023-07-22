@@ -30,7 +30,13 @@ export async function POST(req: Request) {
                 email: email,
                 password: hashedpass,
                 email_verified: new Date(),
-                user_image: null
+                user_image: null,
+                wallet: {
+                    create: {
+                        balance: 0,
+                        currency: 'Pesos'
+                    }
+                }
 
             }
         })

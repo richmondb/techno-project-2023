@@ -49,8 +49,9 @@ async function Page({params}: { params: { farmerid: string } }) {
     })
 
 
-    console.log(active_contract_paid);
-    console.log(active_contract);
+    // console.log(active_contract_paid);
+    // console.log(active_contract);
+    console.log('hello')
 
     function activecontract() {
         return (
@@ -321,7 +322,7 @@ async function Page({params}: { params: { farmerid: string } }) {
                     <div className={'relative h-[300px]'}>
                         <p>1</p>
                         {/*farm picure of farmer picture*/}
-                        <Image src={'/carousel/4.jpg'} fill quality={100} alt="Shoes" className={''}
+                        <Image src={`/farmers/img-${params.farmerid}.jpg`} fill quality={100} alt="Shoes" className={''}
                                priority={true}/>
                         {/*farm favorites*/}
                         <div className={'absolute top-2 right-2 flex flex-col gap-2'}>

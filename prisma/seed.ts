@@ -59,7 +59,13 @@ async function main() {
             birthday: new Date(),
             phone_num: '',
             password: '$2b$12$ej5qECl2XeQP3EoU2ItFWOj0n3qcmlFdLT9WL6dj3OC34wI3IiYfC',
-            email_verified: new Date()
+            email_verified: new Date(),
+            wallet: {
+                create: {
+                    balance: 0,
+                    currency: 'Pesos',
+                }
+            }
 
         }
     })

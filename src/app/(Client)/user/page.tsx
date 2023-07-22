@@ -50,7 +50,8 @@ const Page = async () => {
                             <p className={'text-gray-600'}>Your Current Wallet Fund as of Today:
                             </p>
                             <p className={'pt-3'}>
-                                <span className={'text-2xl text-green-800'}> {user.wallet?.balance} Pesos</span>
+                                <span
+                                    className={'text-2xl text-green-800'}> {(user?.wallet?.balance) ? user?.wallet?.balance : '0'} Pesos</span>
                             </p>
                         </div>
                         <div className={'px-4 flex flex-col w-[250px]'}>

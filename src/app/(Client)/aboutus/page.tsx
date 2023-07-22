@@ -18,7 +18,7 @@ const Aboutus = () => {
                     </div>
                     <hr/>
                 </div>
-                <div className={'w-full flex flex-col gap-8 p-12'}>
+                <div className={'w-full flex flex-col gap-3 p-8'}>
                     <div className={'flex justify-center text-xl px-28 py-8'}>
                         <h1>Welcome to InvestoFarm!
                             <br/><br/><br/>

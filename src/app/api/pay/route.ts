@@ -20,65 +20,68 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
     date.setDate(date.getDate() + 90)
 
-
     try {
-        const userwallet = await prisma.wallet.upsert({
-            create: {},
-            update: {
-                balance: {
-                    decrement: Number(data.amounttodeduct)
+        const userwallet = await prisma.user.update({
+            where: {
+                id: Number(data.userId)
+            },
+            data: {
+                wallet: {
+                    update: {
+                        data: {
+                            balance: {
+                                decrement: Number(data.amounttodeduct)
+                            }
+                        }
+                    }
                 }
             },
-            where: {
-                userId: Number(data.userId),
-            }
-
         })
         console.log(userwallet)
 
-        const usercontract = await prisma.contract.update({
-            data: {
-                payment_date: new Date(),
-                payment_method: 'wallet',
-                payment_status: 'paid',
-                status: 1,
-                date_ended: date,
-            },
-            where: {
-                userId: Number(data.userId),
-                farmId: Number(data.farmId)
-            }
-        });
-
-        const farmsPaid = await prisma.contract.findMany({
-            where: {
-                payment_status: 'paid'
-            },
-            select: {
-                farmId: true
-            }
-        });
-
-        console.log(farmsPaid)
-
-        // Extract the farmIDs from the result
-        const farmIdsPaid = farmsPaid.map((farm) => farm.farmId);
-
-        console.log(farmIdsPaid)
-
-        // Update the GlobalFarmStatus where farmID is in farmIdsPaid
-        const updatedglobalfarm = await prisma.globalFarmStatus.updateMany({
-            where: {
-                farmId: {
-                    in: farmIdsPaid
-                }
-            },
-            data: {
-                global_amt_raise: Number(data.investedAmount)
-            }
-        });
-
-        console.log(updatedglobalfarm)
+        // const usercontract = await prisma.contract.update({
+        //     data: {
+        //         payment_date: new Date(),
+        //         payment_method: 'wallet',
+        //         payment_status: 'paid',
+        //         status: 1,
+        //         date_ended: date,
+        //     },
+        //     where: {
+        //         userId: Number(data.userId),
+        //         farmId: Number(data.farmId)
+        //     }
+        // });
+        //
+        // const farmsPaid = await prisma.contract.findMany({
+        //     where: {
+        //         payment_status: 'paid'
+        //     },
+        //     select: {
+        //         farmId: true
+        //     }
+        // });
+        //
+        // console.log(farmsPaid)
+        //
+        // // Extract the farmIDs from the result
+        // const farmIdsPaid = farmsPaid.map((farm) => farm.farmId);
+        //
+        // console.log(farmIdsPaid)
+        //
+        // // Update the GlobalFarmStatus where farmID is in farmIdsPaid
+        // const updatedglobalfarm = await prisma.globalFarmStatus.updateMany({
+        //     where: {
+        //         farmId: {
+        //             in: farmIdsPaid
+        //         }
+        //     },
+        //     data: {
+        //         global_amt_raise: Number(data.investedAmount)
+        //     }
+        // });
+        //
+        // console.log(updatedglobalfarm)
 
 
         // console.log(usercontract)

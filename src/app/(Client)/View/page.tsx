@@ -6,7 +6,6 @@ import Link from "next/link";
 const Page = async () => {
     const data = await Getfarms();
 
-
     let count = 0;
 
     // await new Promise(r => setTimeout(r, 3000));
@@ -51,9 +50,9 @@ const Page = async () => {
                                 <p className="mb-2 text-center font-normal text-gray-600 dark:text-gray-400">{}</p>
                                 <hr/>
                             </div>
-                            <div className={'flex mt-1 h-12 w-full bg-green-300 justify-center items-center'}>
+                            <div className={'flex mt-1 h-16  w-full bg-green-300 justify-center items-center'}>
                                 <div>
-                                    <p className={'text-xl'}>{farm.globalfarmstatus?.global_amt_raise?.toFixed(2).toString()} of {farm.target_amt?.toFixed(2).toString()}
+                                    <p className={'text-xl text-center p-1'}>{farm.globalfarmstatus?.global_amt_raise?.toFixed(2).toString()} of {farm.target_amt?.toFixed(2).toString()}
                                         {" Raised!"}</p>
                                 </div>
                             </div>

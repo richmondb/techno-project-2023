@@ -13,7 +13,7 @@ const Founder = () => {
                         className="w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
                         <div className="flex flex-col items-center pt-10 pb-10">
                             <Image className="mb-3 h-24 w-24 rounded-full shadow-lg" width={96} height={96}
-                                   src="/sampleavatar.jpg" alt="Bonnie image"/>
+                                   src="/founder/richmond.jpg" alt="Bonnie image"/>
                             <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">Richmond John
                                 Billones</h5>
                             <span className="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
@@ -33,7 +33,7 @@ const Founder = () => {
 
                         <div className="flex flex-col items-center pt-10 pb-10">
                             <Image className="mb-3 h-24 w-24 rounded-full shadow-lg" width={96} height={96}
-                                   src="/sampleavatar.jpg" alt="Bonnie image"/>
+                                   src="/founder/delby.jpg" alt="Bonnie image"/>
                             <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">Delby Namoro</h5>
                             <span className="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
                             <div className="mt-4 flex space-x-3 md:mt-6">
