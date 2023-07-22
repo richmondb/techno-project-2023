@@ -3,8 +3,6 @@ import {getServerSession} from "next-auth/next";
 import {authOptions} from "@/src/lib/auth";
 import prisma from "@/prisma/client";
 import Logout from "@/src/components/acoount/logout";
-import {date} from "zod";
-import {now} from "next-auth/client/_utils";
 import Link from "next/link";
 
 const Page = async () => {

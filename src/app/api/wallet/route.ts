@@ -1,6 +1,5 @@
 import prisma from "@/prisma/client";
 import {NextRequest, NextResponse} from "next/server";
-import Next from "next-auth/src";
 
 type reqdata = {
     userId: string,

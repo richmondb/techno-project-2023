@@ -1,8 +1,6 @@
 'use client'
 import React, {FormEvent, useEffect, useState} from 'react';
-import {getServerSession} from "next-auth/next";
-import {authOptions} from "@/src/lib/auth";
-import {getSession, useSession} from "next-auth/react";
+import {useSession} from "next-auth/react";
 import {useRouter, useSearchParams} from "next/navigation";
 import {toast} from "react-toastify";
 

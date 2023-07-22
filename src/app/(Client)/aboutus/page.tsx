@@ -1,7 +1,4 @@
 import React from 'react'
-import AboutSectionOne from "@/src/components/about/AboutSectionOne";
-import AboutSectionTwo from "@/src/components/about/AboutSectionTwo";
-import Footer from "@/src/components/footer/Footer";
 import Founder from '@/src/components/about/Founder';
 import Partners from "@/src/components/homepage/Partners";
 
