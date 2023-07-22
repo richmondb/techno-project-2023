@@ -1,7 +1,10 @@
 export default function Loading() {
     return (
         <>
-            <p>Loading...</p>
+            <div className={'w-full h-full flex justify-center text-xl'}>
+                <p>Data Loading...</p>
+            </div>
+
         </>
     )
 }
