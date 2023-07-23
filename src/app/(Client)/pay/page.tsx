@@ -215,15 +215,7 @@ const Page = () => {
                                                             className={'w-1/2 p-1 pl-3  border border-base-300'}>{farmerDetails.croplifetime} Days
                                                         </div>
                                                     </div>
-                                                    <div className={'w-full flex'}>
-                                                        <div className={'w-1/2 p-1  pl-3 border border-base-300'}>Farm
-                                                            Name
-                                                        </div>
-                                                        <div className={'w-1/2 p-1 pl-3  border border-base-300'}>test
-                                                        </div>
-                                                    </div>
-
-
+                                                   
                                                 </div>
                                             </div>
 
