@@ -13,7 +13,11 @@ const Page = () => {
     const sessionid = useSession();
 
     // console.log(sessionid.data?.user?.id)
-    console.log(sessionid.data?.id)
+    console.log('user id ', sessionid.data?.id)
+
+    const sessionuserid = sessionid.data?.id;
+
+    const [userid, setuserid] = useState('')
 
     const [value, setvalue] = useState(0);
     const [farmerDetails, setfarmerDetails] = useState({
@@ -48,21 +52,17 @@ const Page = () => {
         console.log(value)
     }, [farmerDetails.investedAmount])
 
-
-    // console.log('type of value is', isNaN(value))
-    // console.log(farmerDetails.investedAmount)
-
-    // if (farmerDetails.investedAmount == null) {
-    //     console.log('null')
-    // } else {
-    //     console.log('not null')
-    // }
+    useEffect(() => {
+            setuserid(sessionuserid)
+            // console.log('userid inside use-effect', userid)
+        },
+        [sessionuserid])
 
 
     useEffect(() => {
         try {
             async function fetchfarmerdata() {
-                const response = await fetch(`/api/invest/?fid=${farmeridinurl}`, {
+                const response = await fetch(`/api/invest/?fid=${farmeridinurl}&uid=${sessionuserid}`, {
                     method: 'GET',
                 });
                 const data = await response.json();
@@ -72,20 +72,21 @@ const Page = () => {
                     setfarmerDetails({
                         farm_name: data.farmer.farm_name,
                         farmerId: data.farmer.id,
-                        contractId: data.farmer.contract?.id,
+                        contractId: data.farmer.contract?.id | 0,
                         investedAmount: data.farmer.contract?.invested_amount,
                     })
                 }
-                // if (data.)
             }
 
-            fetchfarmerdata();
+            if (sessionuserid != undefined) {
+                fetchfarmerdata();
+            }
 
         } catch (e) {
             console.log(e)
         }
 
-    }, [farmeridinurl]);
+    }, [sessionuserid]);
 
     // console.log(fetchfarmerdata)
 
@@ -99,6 +100,8 @@ const Page = () => {
     //     setvalue(0)
     // }
     console.log(Number(farmerDetails.investedAmount))
+
+    console.log('userid inside outside usereefect', userid)
 
 
     const onValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {

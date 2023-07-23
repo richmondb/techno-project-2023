@@ -18,6 +18,8 @@ const Page = async () => {
         },
     })
 
+    console.log(user)
+
     const contracts = await prisma.contract.findMany({
         where: {
             user: {
@@ -35,6 +37,7 @@ const Page = async () => {
     return (
         <div>
             {/*{session.id}*/}
+            {/*{user.name}*/}
             <div className={'w-full h-1/3 bg-white '}>
                 <div className={'p-3'}>
                     <div className={'flex p-8 border border-green-800'}>
@@ -48,8 +51,8 @@ const Page = async () => {
                             <p className={'text-gray-600'}>Your Current Wallet Fund as of Today:
                             </p>
                             <p className={'pt-3'}>
-                                <span
-                                    className={'text-2xl text-green-800'}> {(user?.wallet?.balance) ? user?.wallet?.balance : '0'} Pesos</span>
+                                    <span
+                                        className={'text-2xl text-green-800'}> {(user?.wallet?.balance) ? user?.wallet?.balance : '0'} Pesos</span>
                             </p>
                         </div>
                         <div className={'px-4 flex flex-col w-[250px]'}>

@@ -11,7 +11,7 @@ import Next from "next-auth/src";
 //     }
 // }
 
-interface passedData {
+type passedData = {
     userId: string,
     farmId: string,
     moneyInvest: string,
@@ -20,39 +20,41 @@ interface passedData {
 
 export async function POST(req: NextRequest, res: NextResponse) {
     try {
-        let {userId, farmId, moneyInvest, contractId}: passedData = await req.json();
+        let reqdata: passedData = await req.json();
         // const data = await req.json();
-        console.log('pass data is ', typeof userId);
+        console.log('pass data is ', reqdata.userId);
 
-        console.log('contract id is ', contractId);
+        console.log('contract id is ', reqdata.contractId);
 
-        if (contractId == "undefined") {
-            contractId = '0';
-        }
+        console.log(reqdata)
 
-        console.log('contract id is ', contractId);
+        // if (contractId == "undefined") {
+        //     contractId = '0';
+        // }
+
+        console.log('contract id is ', reqdata.contractId);
 
 
         const data = await prisma.contract.upsert({
             where: {
-                id: Number(contractId)
+                id: Number(reqdata.contractId)
             },
             create: {
-                userId: Number(userId),
-                farmId: Number(farmId),
-                payment_amount: parseFloat(moneyInvest) + 500,
-                invested_amount: parseFloat(moneyInvest),
+                userId: Number(reqdata.userId),
+                farmId: Number(reqdata.farmId),
+                payment_amount: parseFloat(reqdata.moneyInvest) + 500,
+                invested_amount: parseFloat(reqdata.moneyInvest),
                 date_started: new Date(),
                 status: 0,
-                expected_payout: parseFloat(moneyInvest) * 1.045,
+                expected_payout: parseFloat(reqdata.moneyInvest) * 1.045,
                 payment_status: 'pending',
             },
             update: {
-                payment_amount: parseFloat(moneyInvest) + 500,
-                invested_amount: parseFloat(moneyInvest),
+                payment_amount: parseFloat(reqdata.moneyInvest) + 500,
+                invested_amount: parseFloat(reqdata.moneyInvest),
                 date_started: new Date(),
                 status: 0,
-                expected_payout: parseFloat(moneyInvest) * 1.045,
+                expected_payout: parseFloat(reqdata.moneyInvest) * 1.045,
                 payment_status: 'pending',
             },
 
@@ -69,21 +71,32 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
 export async function GET(req: NextRequest, res: NextResponse) {
 
-    const id = req.nextUrl.searchParams.get('fid');
+    const fid = req.nextUrl.searchParams.get('fid');
+    const uid = req.nextUrl.searchParams.get('uid');
 
-    console.log('farmer id is ', id)
+    console.log('farmer id is ', fid)
+    console.log('farmer id is ', uid)
 
     try {
         const farmer = await prisma.farm.findUnique({
             where: {
-                id: Number(id)
+                id: Number(fid)
             },
             select: {
-                contract: true,
+                contract: {
+                    where: {
+                        userId: Number(uid)
+                    }
+                },
                 farm_name: true,
                 id: true,
             }
         });
+
+        // const contract = await prisma.contract.findUnique({
+        //     where: {}
+        // });
+
         return NextResponse.json({message: 'success', success: true, farmer});
     } catch (e) {
         console.log(e)

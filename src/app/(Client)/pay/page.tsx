@@ -13,6 +13,10 @@ const Page = () => {
 
     const user = session?.user.id;
 
+    const sessionid = useSession();
+
+    const sessionuserid = sessionid.data?.id;
+
     const userid = String(user);
 
     console.log('session user id : ', session?.user.id)
@@ -43,43 +47,51 @@ const Page = () => {
     const [formdata, setformdata] = useState({
         userId: `${userid}`,
         farmId: `${farmerId}`,
+        contractId: '',
         firstname: '',
         lastname: '',
         phonenum: '',
         amounttodeduct: '',
         email: '',
-        investedAmount: ``
+        invested_amt: ``
     })
 
     useEffect(() => {
         setformdata({...formdata, userId: session?.user.id})
     }, [session?.user.name])
 
+    // useEffect(() => {
+    //     setformdata({...formdata, invested_amt: farmerDetails.investedAmount})
+    //     console.log('formdata invested amount', formdata.invested_amt)
+    //     console.log('farmerdetails invested amount', farmerDetails.investedAmount)
+    // }, [farmerDetails.investedAmount])
+
     useEffect(() => {
-        setformdata({...formdata, investedAmount: farmerDetails.investedAmount})
-    }, [farmerDetails.investedAmount])
+        setformdata({...formdata, contractId: farmerDetails.contractId})
+    }, [farmerDetails.contractId])
 
     useEffect(() => {
         try {
             async function fetchfarmerdata() {
-                const response = await fetch(`/api/pay/?fid=${farmerId}`, {
+                const response = await fetch(`/api/pay/?fid=${farmerId}&uid=${sessionuserid}`, {
                     method: 'GET',
                     cache: "no-store"
                 });
                 const data = await response.json();
                 if (data.success) {
                     console.log(data)
+                    console.log(data.farmer.contract[0].invested_amount)
                     setfarmerDetails({
                         farm_name: data.farmer.farm_name,
                         farmerId: data.farmer.id,
-                        contractId: data.farmer.contract?.id,
-                        investedAmount: data.farmer.contract?.invested_amount,
+                        contractId: data.farmer.contract[0].id,
+                        investedAmount: data.farmer.contract[0].invested_amount,
                         farm_addrs: data.farmer.farm_address,
                         farmcrop: data.farmer.farm_crop,
                         croplifetime: data.farmer.crop_lifetime,
-                        amnt_topay: data.farmer.contract?.payment_amount,
+                        amnt_topay: data.farmer.contract[0].payment_amount,
                         target_amnt: data.farmer.target_amt,
-                        wallet_balance: data.farmer.contract.user.wallet.balance,
+                        wallet_balance: data.farmer.contract[0].user.wallet.balance,
                     });
                     console.log(data)
 
@@ -88,7 +100,11 @@ const Page = () => {
 
             }
 
-            fetchfarmerdata();
+            // fetchfarmerdata();
+
+            if (sessionuserid != undefined) {
+                fetchfarmerdata();
+            }
 
             console.log('im called')
 
@@ -96,7 +112,7 @@ const Page = () => {
             console.log(e)
         }
 
-    }, []);
+    }, [sessionuserid]);
 
     const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         // console.log(e.target.value)
@@ -117,16 +133,11 @@ const Page = () => {
     const onsubmithandle = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        // console.log(userid)
-        // console.log(farmerId)
-
-
-        // console.log(typeof userid)
-        // console.log((formdata.userId))
+        setformdata({...formdata, invested_amt: farmerDetails.investedAmount})
 
         console.log(formdata)
         // console.log(formdata.userId)
-
+        //
         try {
             const response = await fetch(`/api/pay/`, {
                 method: 'POST',

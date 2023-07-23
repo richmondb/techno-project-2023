@@ -24,7 +24,7 @@ async function Page({params}: { params: { farmerid: string } }) {
 
     console.log(data)
 
-    const active_contract = await prisma.contract.findUnique({
+    const active_contract = await prisma.contract.findFirst({
         where: {
             farmId: Number(id),
             userId: session.id,
@@ -35,7 +35,7 @@ async function Page({params}: { params: { farmerid: string } }) {
         }
     })
 
-    const active_contract_paid = await prisma.contract.findUnique({
+    const active_contract_paid = await prisma.contract.findFirst({
         where: {
             farmId: Number(id),
             payment_status: 'paid',

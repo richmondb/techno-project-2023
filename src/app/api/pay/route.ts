@@ -1,6 +1,8 @@
 import {NextRequest, NextResponse} from "next/server";
 import prisma from "@/prisma/client";
 import {primary} from "@cloudinary-util/url-loader";
+import {mockSession} from "next-auth/client/__tests__/helpers/mocks";
+import user = mockSession.user;
 
 type reqdata = {
     userId: string,
@@ -37,54 +39,37 @@ export async function POST(req: NextRequest, res: NextResponse) {
                 }
             },
         })
+
+
+        const usercontract = await prisma.contract.update({
+            data: {
+                payment_date: new Date(),
+                payment_method: 'wallet',
+                payment_status: 'paid',
+                status: 1,
+                date_ended: date,
+            },
+            where: {
+                id: Number(data.contractId),
+                userId: Number(data.userId),
+                farmId: Number(data.farmId)
+            }
+        });
+
+        const updatedglobalfarm = await prisma.globalFarmStatus.update({
+            where: {
+                farmId: Number(data.farmId),
+            },
+            data: {
+                global_amt_raise: {
+                    increment: Number(data.invested_amt)
+                }
+            }
+        });
+
         console.log(userwallet)
-
-        // const usercontract = await prisma.contract.update({
-        //     data: {
-        //         payment_date: new Date(),
-        //         payment_method: 'wallet',
-        //         payment_status: 'paid',
-        //         status: 1,
-        //         date_ended: date,
-        //     },
-        //     where: {
-        //         userId: Number(data.userId),
-        //         farmId: Number(data.farmId)
-        //     }
-        // });
-        //
-        // const farmsPaid = await prisma.contract.findMany({
-        //     where: {
-        //         payment_status: 'paid'
-        //     },
-        //     select: {
-        //         farmId: true
-        //     }
-        // });
-        //
-        // console.log(farmsPaid)
-        //
-        // // Extract the farmIDs from the result
-        // const farmIdsPaid = farmsPaid.map((farm) => farm.farmId);
-        //
-        // console.log(farmIdsPaid)
-        //
-        // // Update the GlobalFarmStatus where farmID is in farmIdsPaid
-        // const updatedglobalfarm = await prisma.globalFarmStatus.updateMany({
-        //     where: {
-        //         farmId: {
-        //             in: farmIdsPaid
-        //         }
-        //     },
-        //     data: {
-        //         global_amt_raise: Number(data.investedAmount)
-        //     }
-        // });
-        //
-        // console.log(updatedglobalfarm)
-
-
-        // console.log(usercontract)
+        console.log(updatedglobalfarm)
+        console.log(usercontract)
 
     } catch (e) {
         console.log(e)
@@ -100,15 +85,21 @@ export async function POST(req: NextRequest, res: NextResponse) {
 export async function GET(req: NextRequest, res: NextResponse) {
 
     const farm_id = req.nextUrl.searchParams.get('fid');
-    // const user_id = req.nextUrl.searchParams.get('uid');
+    const user_id = req.nextUrl.searchParams.get('uid');
+
+    console.log(farm_id, user_id)
 
     try {
         const farmer = await prisma.farm.findUnique({
             where: {
                 id: Number(farm_id)
+
             },
             select: {
                 contract: {
+                    where: {
+                        userId: Number(user_id)
+                    },
                     include: {
                         user: {
                             select: {

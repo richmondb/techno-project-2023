@@ -56,12 +56,13 @@ model Contract {
   date_ended   DateTime?
 
   farm   Farm @relation(fields: [farmId], references: [id], onDelete: Cascade)
-  farmId Int  @unique
+  farmId Int
 
   user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId Int
+  userId Int  @unique
 
-  @@index([userId, farmId])
+  @@index([farmId])
+  @@index([userId])
 }
 
 // model Contract {
@@ -107,5 +108,5 @@ model Farm {
   globalfarmstatus   GlobalFarmStatus?
   globalfarmstatusId Int?
 
-  contract Contract?
+  contract Contract[]
 }
